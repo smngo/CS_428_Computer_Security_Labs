@@ -2,7 +2,7 @@
 
 ## Overview
 
-This lab investigates the return-to-libc attack, a technique for exploiting buffer-overflow vulnerabilities that bypasses the non-executable stack protection found in operating systems like Fedora Linux. Rather than injecting and jumping to shellcode on the stack, this attack redirects execution to existing code already loaded in memory — specifically functions inside the libc library — making it effective even when the stack itself cannot execute code.
+This lab investigates the return-to-libc attack, a technique for exploiting buffer-overflow vulnerabilities that bypasses the non-executable stack protection found in operating systems like Fedora Linux. Rather than injecting and jumping to shellcode on the stack, this attack redirects execution to existing code already loaded in memory, specifically functions inside the libc library; making it effective even when the stack itself cannot execute code.
 
 ## Learning Objective
 
@@ -37,4 +37,4 @@ Even after successfully spawning a shell connected to `/bin/sh`, worked around a
 
 ## Abstract
 
-> Using the retlib program, I investigate and put into practice a number of return-to-libc attacks that alter memory, issue commands, and increase privileges. Each of the four tasks in the lab focuses on a distinct facet of the attack. First, I debug the Set-UID retlib program using the GNU Debugger (GDB) to determine the memory locations of the libc functions system() and exit(). I then use environment variables to load the shell text (/bin/sh) into memory and determine its address to send to system(). Next, I use Python to automate the process by creating a malicious input file (badfile) with the required memory addresses and function calls. Even with /bin/sh connected to a shell, I get around shell countermeasures in the last job by using [finish this sentence with the specific technique you used — your original abstract got cut off here].
+> Using the retlib program, I investigate and put into practice a number of return-to-libc attacks that alter memory, issue commands, and increase privileges. Each of the four tasks in the lab focuses on a distinct facet of the attack. First, I debug the Set-UID retlib program using the GNU Debugger (GDB) to determine the memory locations of the libc functions system() and exit(). I then use environment variables to load the shell text (/bin/sh) into memory and determine its address to send to system(). Next, I use Python to automate the process by creating a malicious input file (badfile) with the required memory addresses and function calls. Even with /bin/sh connected to a shell, I get around shell countermeasures in the last job by using execv() to escalate privileges and obtain a root shell.
